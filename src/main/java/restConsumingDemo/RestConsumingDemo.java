@@ -37,9 +37,9 @@ public class RestConsumingDemo {
 	    System.out.println("Enter GitHub password:");
 	    String password = bufferRead.readLine();
 				
-		RestService rs = new RestServiceJerseyImpl(user, password);
-		//RestService rs = new RestServiceImpl(user, password);
-		List<String> l = rs.getRepoNames();
+		RestService rsJersey = new RestServiceJerseyImpl(user, password);
+		RestService rs = new RestServiceImpl(user, password);
+		List<String> l = rsJersey.getRepoNames();
 		
 		printRepos(l);
 		
