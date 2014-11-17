@@ -10,6 +10,7 @@ import java.util.List;
 
 import restConsumingDemo.service.RestService;
 import restConsumingDemo.service.impl.RestServiceImpl;
+import restConsumingDemo.service.jerseyImpl.RestServiceJerseyImpl;
 
 /**
  * Petita app que permet crear un nou repository (sense opcions) a GitHub.
@@ -36,17 +37,22 @@ public class RestConsumingDemo {
 	    System.out.println("Enter GitHub password:");
 	    String password = bufferRead.readLine();
 				
-		RestService rs = new RestServiceImpl(user, password);
+		RestService rs = new RestServiceJerseyImpl(user, password);
+		//RestService rs = new RestServiceImpl(user, password);
 		List<String> l = rs.getRepoNames();
 		
 		printRepos(l);
 		
 		System.out.println();
-		System.out.println("Enter new repository name:");
-		String repoName = bufferRead.readLine();
-		
-		System.out.println("Creating new repository: '" + repoName + "'");
-		rs.createRepo(repoName);
+		System.out.println("Create new repo? (y/n)");
+		String option = bufferRead.readLine();
+		if (option.equalsIgnoreCase("y")) {
+			System.out.println("Enter new repository name:");
+			String repoName = bufferRead.readLine();
+			
+			System.out.println("Creating new repository: '" + repoName + "'");
+			rs.createRepo(repoName);
+		}
 		
 		l = rs.getRepoNames();
 		
