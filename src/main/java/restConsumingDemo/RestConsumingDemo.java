@@ -9,11 +9,13 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import restConsumingDemo.service.RestService;
+import restConsumingDemo.service.RestServiceBis;
 import restConsumingDemo.service.impl.RestServiceImpl;
 import restConsumingDemo.service.jerseyImpl.RestServiceJerseyImpl;
 
 /**
- * Petita app que permet crear un nou repository (sense opcions) a GitHub.
+ * Petita app que permet crear i/o eliminar un repository
+ * (sense opcions) a GitHub.
  * 
  * @author AEF
  *
@@ -21,8 +23,8 @@ import restConsumingDemo.service.jerseyImpl.RestServiceJerseyImpl;
 public class RestConsumingDemo {
 	
 	/**
-	 * Demana usuari y pwd, llista repositoris, demana nom del nou repositori y finalment
-	 * torna a llistar els repositoris.
+	 * Demana usuari y pwd, llista repositoris, ofereix crear i/o eliminar
+	 * un repositori torna a llistar els repositoris.
 	 * 
 	 * @param args -
 	 */
@@ -37,10 +39,10 @@ public class RestConsumingDemo {
 	    System.out.println("Enter GitHub password:");
 	    String password = bufferRead.readLine();
 				
-		RestService rsJersey = new RestServiceJerseyImpl(user, password);
+		RestServiceBis rsJersey = new RestServiceJerseyImpl(user, password);
 		RestService rs = new RestServiceImpl(user, password);
-		List<String> l = rsJersey.getRepoNames();
 		
+		List<String> l = rs.getRepoNames();
 		printRepos(l);
 		
 		System.out.println();
@@ -54,8 +56,17 @@ public class RestConsumingDemo {
 			rs.createRepo(repoName);
 		}
 		
-		l = rs.getRepoNames();
+		System.out.println("Delete a repo? (y/n)");
+		option = bufferRead.readLine();
+		if (option.equalsIgnoreCase("y")) {
+			System.out.println("Enter name of repository to delete:");
+			String repoName = bufferRead.readLine();
+			
+			System.out.println("Deleting repository: '" + repoName + "'");
+			rsJersey.deleteRepository(repoName);
+		}
 		
+		l = rsJersey.getRepoNames();
 		printRepos(l);
 		
 		System.out.println("Done!");

@@ -16,6 +16,8 @@ import restConsumingDemo.service.RestService;
 import restConsumingDemo.service.RestServiceConstants;
 
 /**
+ * Implementació fent
+ * 
  * @author asier
  *
  */

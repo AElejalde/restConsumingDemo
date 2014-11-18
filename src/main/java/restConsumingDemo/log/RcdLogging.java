@@ -19,10 +19,11 @@ public class RcdLogging {
 	}
 	
 	public void log(String msg) {
-		System.out.println(msg);
+		System.out.println("LOG-INFO:" + msg);
 	}
 
 	public void log(Exception e) {
+		System.out.println("LOG-ERROR:");
 		e.printStackTrace();
 	}
 }
