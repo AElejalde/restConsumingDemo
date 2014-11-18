@@ -4,6 +4,8 @@
 package restConsumingDemo.log;
 
 /**
+ * Simulació de logs
+ * 
  * @author asier
  *
  */

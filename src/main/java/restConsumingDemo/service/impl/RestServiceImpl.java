@@ -16,7 +16,7 @@ import restConsumingDemo.service.RestService;
 import restConsumingDemo.service.RestServiceConstants;
 
 /**
- * Implementació fent
+ * Implementació fent servir EGit
  * 
  * @author asier
  *
@@ -35,12 +35,18 @@ public class RestServiceImpl implements RestService {
 		this.repoService = repoService;
 	}
 
+	/* (non-Javadoc)
+	 * @see restConsumingDemo.service.RestService#getRepoNames()
+	 */
 	public List<String> getRepoNames() {
 		
 		List<String> names = getRepositoriesNames(repoService);
 		return names;
 	}
 	
+	/* (non-Javadoc)
+	 * @see restConsumingDemo.service.RestService#createRepo(java.lang.String)
+	 */
 	public void createRepo(String repoName) {
 		
 		createRepository(repoName, repoService);
